@@ -1,0 +1,52 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+*{ 
+ font-family: 'Noto Sans KR', sans-serif;
+}
+body{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:14px;
+}
+a{text-decoration: none; color: #333;}
+
+/* nav */
+#allInput{
+  width: 96%;
+}
+.topSearch{
+  height:50px;
+  border:2px solid darkred;
+  border-radius: 20px;
+}
+#Forminput{
+  border-radius: 20px 0px 0px 20px;
+  border: none;
+}
+#button-addon2{
+  background-color: darkred;
+  color: white;
+  border: none;
+  border-radius: 0px 20px 20px 0px;
+}
+
+/* alamContainer */
+#alamContainer{
+  margin-top:60px;
+  padding: 40px;
+  border:1px solid #ddd;
+  border-radius: 5px;
+}
+.container1{
+  display: flex;
+  flex-wrap: wrap;
+}
+.container1>img{
+  width: 45px;
+  height: 45px;
+}
+.container1>div{
+  padding-left: 20px;
+  font-size: 12px;
+}
+.container1:nth-of-type(1)>div{
+  padding-bottom: 10px;
+}
