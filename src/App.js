@@ -1,6 +1,8 @@
 import {Button,Container,Form,Nav,Navbar,NavDropdown,Offcanvas,Dropdown,InputGroup,SplitButton,Carousel,Row,Col} from 'react-bootstrap';
 import './App.css';
 
+// https://preview.themeforest.net/item/ecolife-multipurpose-ecommerce-html-template/full_screen_preview/27418907?_ga=2.234899529.914488396.1658728789-1128965468.1658728789&_gac=1.208849446.1658730697.EAIaIQobChMIi8nuq7WT-QIV1GSLCh2JqArxEAMYAyAAEgKPbvD_BwE
+
 function App() {
   return (
     <>
@@ -127,6 +129,25 @@ function App() {
         </div>
         </Col>
       </Row>
+    </Container>
+
+    {/* 상품이미지 */}
+    <Container>
+        <div id='Product1'>
+          <div>
+            <Row>
+              <Col md={6}><img src='img/slide9.jpg' width='200%'></img></Col>
+            </Row>
+          </div>
+          <div>
+            <Row>
+              <div style={{overflow:'hidden'}}><Col md={6} className='imghover'><img src='img/slide7.jpg' width='200%' style={{marginBottom:"3%"}}></img></Col></div>
+              <div style={{overflow:'hidden'}}>
+              <Col md={6} className='imghover'><img src='img/slide6.jpg' width='200%'></img></Col>
+              </div>
+            </Row>
+          </div>
+        </div>
     </Container>
     </>
   );
