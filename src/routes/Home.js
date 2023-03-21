@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 function Home(props){
 
+  let navigate=useNavigate();
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -25,6 +26,7 @@ function Home(props){
     slidesToScroll: 2,
     centerPadding:'0px'
   };
+
   return(
     <>
     {/* slide */}
@@ -88,29 +90,53 @@ function Home(props){
       </Row>
     </Container>
 
-    {/* 상품이미지 */}
-    <Container style={{marginBottom:"80px"}}>
-        <div id='Product1'>
-          <div>
-            <Row>
-              <Col sm={6} md={6}><img src='img/slide9.jpg' width='200%' alt='img'></img>
-              </Col>
-            </Row>
-          </div>
-          <div>
-            <Row>
-              <div><Col sm={6} md={6}><img src='img/slide7.jpg' width='200%' style={{marginBottom:"3%"}}alt='img'></img></Col></div>
-              <div>
-              <Col sm={6} md={6}><img src='img/slide6.jpg' width='200%'alt='img'></img></Col>
-              </div>
-            </Row>
-          </div>
+    {/* 카테고리 */}
+    <Container id='alamContainer'>
+    <div className="titlefont">카테고리</div>
+      <Row xs={3} md={3} lg={6}>
+        <Col className='container1'  style={{textAlign:"center",justifyContent:"center"}}>
+        <div onClick={()=>{navigate("/detail/4")}} style={{cursor:"pointer"}}>
+          <img src='img/icon8.png'alt='img' style={{width:"50px"}}></img>
+          <h6>메이크업</h6>
         </div>
+        </Col>
+        <Col className='container1' style={{textAlign:"center",justifyContent:"center"}}>
+        <div onClick={()=>{navigate("/detail/10")}} style={{cursor:"pointer"}}>
+          <img src='img/icon3.png'alt='img' style={{width:"50px"}}></img>
+          <h6>비건 화장품</h6>
+        </div>
+        </Col>
+        <Col className='container1' style={{textAlign:"center",justifyContent:"center"}}>
+        <div onClick={()=>{navigate("/detail/6")}} style={{cursor:"pointer"}}>
+          <img src='img/icon6.png'alt='img' style={{width:"50px"}}></img>
+          <h6>세안/세정</h6>
+        </div>
+        </Col>
+        <Col className='container1' style={{textAlign:"center",justifyContent:"center"}}>
+        <div onClick={()=>{navigate("/detail/3")}} style={{cursor:"pointer"}}>
+          <img src='img/icon7.png'alt='img' style={{width:"50px"}}></img>
+          <h6>앰플</h6>
+        </div>
+        </Col>
+        <Col className='container1' style={{textAlign:"center",justifyContent:"center"}}>
+        <div onClick={()=>{navigate("/detail/8")}} style={{cursor:"pointer"}}>
+          <img src='img/icon9.png'alt='img' style={{width:"50px"}}></img>
+          <h6>크림</h6>
+        </div>
+        </Col>
+        <Col className='container1' style={{textAlign:"center",justifyContent:"center"}}>
+        <div onClick={()=>{navigate("/detail/7")}} style={{cursor:"pointer"}}>
+          <img src='img/icon11.png'alt='img' style={{width:"50px"}}></img>
+          <h6>바디</h6>
+        </div>
+        </Col>
+        
+      </Row>
     </Container>
 
     {/* 상품이미지 */}
     <Container id="shop1" style={{marginBottom:"80px"}}>
-      <div className="titlefont">가장 많이 팔린 베스트 상품</div>
+      <div className="titlefont">베스트</div>
       <div style={{textAlign:"center",marginBottom:"20px"}}>
       <Button variant="outline-danger" className="selectbtn" 
       onClick={()=>{
@@ -150,14 +176,15 @@ function Home(props){
         {
           props.cosmetic.map((v,i)=>{
             return(
-              <Product cosmetic={props.cosmetic[i]} i={i+1} res={props.res} setRes={props.setRes}/>
+              <Product cosmetic={props.cosmetic[i]} i={i+1} res={props.res} setRes={props.setRes} key={i}/>
             )
           })
         }
       </Row>
     </Container>
-    <Container style={{marginBottom:"80px"}}>
-      <Carousel activeIndex={index} onSelect={handleSelect}>
+    <div style={{marginBottom:"80px"}}>
+    <div className="titlefont">이벤트</div>
+      <Carousel activeIndex={index} onSelect={handleSelect} style={{cursor:"pointer"}}>
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -209,7 +236,7 @@ function Home(props){
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-    </Container>
+    </div>
     
     <Outlet></Outlet>
 
@@ -265,7 +292,7 @@ function Product(props){
         <Col>
           <div style={{position:"absolute",width:"50px",height:"50px",background:"darkred",color:"white",borderRadius:"0px 0px 25px 0px",fontSize:"20px",textAlign:"center",lineHeight:"220%"}}>{props.i}</div>
           <div width='25%'>
-            <img src={props.cosmetic.imgUrl} width="100%" style={{borderRadius:"0px 60px 0px 60px"}} alt='img' onClick={()=>{
+            <img src={props.cosmetic.imgUrl} width="100%" style={{borderRadius:"0px 60px 0px 60px",cursor:"pointer"}} alt='img' onClick={()=>{
           navigate("/detail/"+props.cosmetic.id)
         }}></img>
             <div style={{display:"flex"}} id="shopbtn1">
@@ -284,7 +311,6 @@ function Product(props){
               <span style={{color:"darkred"}}>{props.cosmetic.price+"원"}</span>
             </p>
           </div>
-          
         </Col>
       </Container>
     )

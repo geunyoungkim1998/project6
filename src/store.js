@@ -16,12 +16,12 @@ let user=createSlice({
 let cart=createSlice({
     name:"cart",
     initialState:[
-        {id:0, name:"퓨어 클렌징 오일 200ml" ,count:2, price:17400},
-        {id:1, name:"비피다 바이옴 콤플렉스 앰플 50ml" ,count:1, price:24500},
-        {id:2, name:"비피다 바이옴 컨센트레이트 세럼 35ml" ,count:3, price:24400},
-        {id:3, name:"갈락 나이아신 2.0 에센스 50ml" ,count:1, price:23200},
-        {id:4, name:"블랙헤드 퓨어 클렌징 오일 킬패드 50매" ,count:1, price:18000},
-        {id:5, name:"판테토인 크림 80ml" ,count:1, price:30000},
+        {id:0, name:"퓨어 클렌징 오일 200ml" ,count:2, price:17400,imgUrl:"img/product1.jpg"},
+        {id:1, name:"비피다 바이옴 콤플렉스 앰플 50ml" ,count:1, price:24500,imgUrl:"img/product2.jpg"},
+        {id:2, name:"비피다 바이옴 컨센트레이트 세럼 35ml" ,count:3, price:24400,imgUrl:"img/product5.jpg"},
+        {id:3, name:"갈락 나이아신 2.0 에센스 50ml" ,count:1, price:23200,imgUrl:"img/product4.jpg"},
+        {id:4, name:"블랙헤드 퓨어 클렌징 오일 킬패드 50매" ,count:1, price:18000,imgUrl:"img/product7.jpg"},
+        {id:5, name:"판테토인 크림 80ml" ,count:1, price:30000,imgUrl:"img/product3.jpg"},
     ],
     reducers:{
         addCount(state,action){

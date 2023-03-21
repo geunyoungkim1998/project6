@@ -5,9 +5,9 @@ import {useState}from 'react';
 import {Routes,Route,Link,useNavigate} from 'react-router-dom';
 import Detail from './routes/Detail';
 import Home from './routes/Home';
-import Cart from './routes/Cart'
+import Cart from './routes/Cart';
+import Login from './routes/Login';
 
-// https://preview.themeforest.net/item/ecolife-multipurpose-ecommerce-html-template/full_screen_preview/27418907?_ga=2.234899529.914488396.1658728789-1128965468.1658728789&_gac=1.208849446.1658730697.EAIaIQobChMIi8nuq7WT-QIV1GSLCh2JqArxEAMYAyAAEgKPbvD_BwE
 
 function App() {
   let[cosmetic,setCosmetic]=useState(data);
@@ -19,9 +19,9 @@ function App() {
       {/* nav bar */}
       {[false].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3">
-          <Container fluid>
+          <Container fluid  id='blacnk5' style={{position:"fixed",top:"0",background:"#f7f7f7",zIndex:"20",height:"50px"}}>
             <div></div>
-            <Navbar.Brand href="#"><Link to='/'><img src='https://www.manyo.co.kr/data/skin/manyo/images/design/logo.png' width='140px' alt='img'/></Link></Navbar.Brand>
+            <Navbar.Brand href="/"><img src='https://www.manyo.co.kr/data/skin/manyo/images/design/logo.png' style={{marginLeft:'70px'}} width='140px' alt='img' /></Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -34,13 +34,14 @@ function App() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link onClick={()=>{ navigate('/cart')}}>장바구니 +</Nav.Link>
+                <Nav.Link onClick={()=>{navigate('/cart')}}>장바구니+</Nav.Link>
+                <Nav.Link onClick={()=>{navigate('/Login')}}>로그인+</Nav.Link>
                   <Nav.Link>
                   <Accordion defaultActiveKey="0" flush>
       <Accordion.Item eventKey="0">전체 카테고리
         <Accordion.Header>피부타입별</Accordion.Header>
         <Accordion.Body>
-          <ul onClick={()=>{ navigate('/detail/0')}}>
+          <ul onClick={()=>{navigate('/detail/0')}}>
             <li>건성</li>
             <li>복합성</li>
             <li>민감성</li>
@@ -55,7 +56,7 @@ function App() {
       <Accordion.Item eventKey="1">
         <Accordion.Header>카테고리별</Accordion.Header>
         <Accordion.Body>
-          <ul onClick={()=>{ navigate('/detail/1')}}>
+          <ul onClick={()=>{navigate('/detail/1')}}>
             <li>전체</li>
             <li>클렌징</li>
             <li>스킨, 토너, 미스트</li>
@@ -73,7 +74,7 @@ function App() {
       <Accordion.Item eventKey="2">
         <Accordion.Header>라인별</Accordion.Header>
         <Accordion.Body>
-          <ul onClick={()=>{ navigate('/detail/2')}}>
+          <ul onClick={()=>{navigate('/detail/2')}}>
             <li>갈락</li>
             <li>비피다</li>
             <li>퓨어 클렌징</li>
@@ -85,7 +86,7 @@ function App() {
       <Accordion.Item eventKey="3">
         <Accordion.Header>브랜드별</Accordion.Header>
         <Accordion.Body>
-          <ul onClick={()=>{ navigate('/detail/3')}}>
+          <ul onClick={()=>{navigate('/detail/3')}}>
             <li>아워비건</li>
             <li>V콜라겐</li>
             <li>노 머시</li>
@@ -94,11 +95,11 @@ function App() {
       </Accordion.Item>
     </Accordion>
                   </Nav.Link>
-                  <Nav.Link onClick={()=>{ navigate('/detail/4')}}>비건 뷰티 기획전</Nav.Link>
-                  <Nav.Link onClick={()=>{ navigate('/detail/5')}}>이벤트</Nav.Link>
-                  <Nav.Link onClick={()=>{ navigate('/detail/6')}}>특가</Nav.Link>
-                  <Nav.Link onClick={()=>{ navigate('/detail/7')}}>베스트</Nav.Link>
-                  <Nav.Link onClick={()=>{ navigate('/detail/8')}}>브랜드</Nav.Link>
+                  <Nav.Link onClick={()=>{navigate('/detail/4')}}>비건 뷰티 기획전</Nav.Link>
+                  <Nav.Link onClick={()=>{navigate('/detail/5')}}>이벤트</Nav.Link>
+                  <Nav.Link onClick={()=>{navigate('/detail/6')}}>특가</Nav.Link>
+                  <Nav.Link onClick={()=>{navigate('/detail/7')}}>베스트</Nav.Link>
+                  <Nav.Link onClick={()=>{navigate('/detail/8')}}>브랜드</Nav.Link>
                 </Nav>
                 <Form className="d-flex">
                   <Form.Control
@@ -136,7 +137,7 @@ fill="#9d2d0b" stroke="none">
       
 
       {/* search */}
-      <InputGroup className="mb-3 topSearch" id='allInput'>
+      <InputGroup className="mb-3 topSearch" id='allInput' style={{marginTop:"50px"}}>
         <Form.Control
           placeholder="New 판테토인 극찐보습"
           aria-label="New 판테토인 극찐보습"
@@ -176,14 +177,21 @@ fill="white" stroke="none">
       </InputGroup>
 
       <Routes>
+
         <Route path="/" element={<Home cosmetic={cosmetic} setCosmetic={setCosmetic} res={res} setRes={setRes} navigate={navigate} btn={btn} setBtn={setBtn}></Home>}>
         </Route>
+
         <Route path="/detail/:id" element={<Detail cosmetic={cosmetic} res={res} setRes={setRes} navigate={navigate}></Detail>}></Route>
+
         <Route path="/cart" element={<Cart></Cart>}></Route>
 
+        <Route path="/Login" element={<Login></Login>}></Route>
+
         <Route path="*" element={<div style={{width:"60%",height:"200px",border:"2px dashed darkred",margin:"0 auto",textAlign:"center",fontSize:"25px",marginBottom:"60px",marginTop:"60px",color:"darkred",display:"flex",alignItems:"center",justifyContent:'center'}}>존재하지 않는 페이지입니다. &nbsp;
+
         <Link to='/' style={{border:"2px solid darkred",fontSize:"16px",padding:"2px 4px",color:"darkred"}}>돌아가기</Link>
         </div>}></Route>
+        
       </Routes>
 
    <Container style={{background:"white" ,maxWidth:"100vw",borderTop:"3px solid darkred"}}>

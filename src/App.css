@@ -61,19 +61,7 @@ li:hover{
 .accordion-button:not(.collapsed)::after{
   background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
 }
-/* .alice-carousel__prev-btn span,
-.alice-carousel__prev-btn-item span,
-.alice-carousel__next-btn span,
-.alice-carousel__next-btn-item span,
-.alice-carousel__play-btn span,
-.alice-carousel__play-btn-item span{
-  color:white;
-  font-weight: border;
-  font-size: 20px;
-  background-color: darkred;
-  padding: 5px 10px;
-  border-radius: 30px;
-} */
+
 .cartBtn{
   width: 25px;
   height: 25px;
@@ -101,6 +89,22 @@ li:hover{
   color:white;
   border:2px solid darkred;
 }
+.priceBtn{
+  border-radius: 25px;
+  border:1px solid darkred;
+  color:darkred;
+}
+.priceBtn:hover{
+  color:white;
+  background-color: darkred;
+  border:1px solid darkred;
+}
+.priceBtn2:disabled{
+  border-radius: 25px;
+  color:darkred;
+  background-color: white;
+  border:1px solid darkred;
+}
 
 /* nav */
 #allInput{
@@ -126,11 +130,22 @@ li:hover{
   flex:5 1 auto;
   padding-left: 20px;
 }
+.form-select{
+  border:none;
+}
+
+.start{
+  transform: scale(0);
+}
+.end{
+  transform: scale(1);
+  transition:all 0.5s;
+}
 
 /* alamContainer */
 #alamContainer{
   margin-top:60px;
-  padding: 40px;
+  padding: 30px;
   border:1px solid #ddd;
   border-radius: 5px;
 }

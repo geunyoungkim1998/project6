@@ -18,25 +18,32 @@ const Cart = () => {
                 <thead>
                     <tr>
                         <th>
-                            <input type="checkbox" checked='checked'></input>
+                            <input type="checkbox" checked='checked' value='' readOnly></input>
                         </th>
+                        <th>상품</th>
                         <th style={{textAlign:"left"}}>상품명</th>
-                        <th>주문수량</th>
+                        <th width="13%">주문수량</th>
                         <th>수량변경하기</th>
-                        <th>가격</th>
+                        <th width="17%">가격</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         state.cart.map((v,i)=>
-                        <tr key={i}>
-                            <td><input type="checkbox" style={{verticalAlign:"middle"}} name='cart' checked='checked'></input></td>
+                        <tr key={i}  id='blacnk4'>
+                            <td><input type="checkbox" style={{verticalAlign:"middle"}} name='cart' checked='checked' value='' readOnly></input></td>
+
+                            <td><img src={state.cart[i].imgUrl} style={{width:"80px"}}></img></td>
+
                             <td style={{textAlign:"left"}}>{state.cart[i].name}</td>
+
                             <td>{state.cart[i].count}</td>
+
                             <td>
                                 <button onClick={()=>dispatch(addCount(state.cart[i].id))} className="cartBtn">+</button>
                                 <button onClick={()=>dispatch(minusCount(state.cart[i].id))} className="cartBtn minusBtn">-</button>
                             </td>
+
                             <td>{state.cart[i].count*state.cart[i].price} 원</td>
                         </tr>
                         )
@@ -51,7 +58,6 @@ const Cart = () => {
                 <Button  className="sortBtn" variant="outline-danger">선택구매</Button>{' '}
                 <Button  className="sortBtn" variant="outline-danger">전체구매</Button>{' '}
             </div>
-            
         </Container>
      </div>
     );

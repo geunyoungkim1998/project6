@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Container,Row,Col,Button,Nav,Table} from 'react-bootstrap';
+import { useState,useEffect } from 'react';
+import { Container,Row,Col,Button,Nav,Table,Accordion} from 'react-bootstrap';
 import { useParams,useNavigate } from 'react-router-dom';
 
 function Detail(props){
@@ -8,8 +8,27 @@ function Detail(props){
   let navigate=useNavigate();
   let [tab,setTab]=useState(0);
 
+  let[scale,setScale]=useState('');
+
+  const [num1,setNum1]=useState(1);
+  const decrease=()=>{
+    setNum1(num1 -1);
+    if(num1<=0){
+      alert("0개 미만으로는 구입할 수 없습니다");
+      setNum1(0);
+    }
+  }
+
+  useEffect(()=>{
+    setTimeout(()=>{setScale('end')},50)
+    return()=>{
+      setScale('');
+    }
+  },[tab])
+
   return(
     <>
+    <div className={'start'+scale}>
       <div style={{background:"darkred",textAlign:'center',color:"white",width:"100%",height:"30px",fontSize:"20px",marginBottom:"60px"}}>
         제품상세
       </div>
@@ -23,6 +42,7 @@ function Detail(props){
           <p style={{fontSize:"16px"}}>{selproduct.text1}</p>
           <p style={{fontSize:"25px",fontWeight:"bold"}}>{selproduct.price}원&nbsp;&nbsp;<span style={{color:"#ccc",fontSize:"16px",textDecoration:"line-through"}}>{selproduct.content}원</span></p>
           <table style={{fontSize:"16px"}}>
+            <tbody>
             <tr>
               <th style={{width:"30%"}}>전성분</th><td>보러가기</td>
             </tr>
@@ -32,8 +52,18 @@ function Detail(props){
             <tr>
               <th>사용기한</th><td>제조일로부터 2년, 개봉 후 1년</td>
             </tr>
+            </tbody>
           </table>
           <hr style={{borderBottom:"2px solid darkred"}}></hr>
+          <div style={{textAlign:"right"}}>
+            <Button variant="outline-danger" className="priceBtn" style={{width:"40px"}} onClick={decrease}>-</Button>{' '}
+
+            <Button variant="outline-danger"  className="priceBtn2" style={{width:"40px"}} disabled="disabled">{num1}</Button>{' '}
+
+            <Button variant="outline-danger" className="priceBtn" style={{width:"40px"}} onClick={()=>setNum1(num1 +1)}>+</Button>{' '}
+
+            <Button variant="outline-danger" className="priceBtn2" disabled="disabled">{num1*selproduct.price+" 원"}</Button>{' '}
+          </div>
           <div style={{display:"flex"}} id="shopbtn1">
             <Button variant="outline-danger" onClick={()=>{navigate('/cart')}} >▷ 장바구니 추가</Button>{' '}
             <Button variant="outline-danger">♡ 위시리스트 추가</Button>{' '}
@@ -64,6 +94,7 @@ function Detail(props){
         
       </Container>
       
+    </div>
     </>
   )
 }
@@ -78,10 +109,10 @@ function TabContent(props){
     </Col>
     </Row>
   </div>, 
-  <div>
+  <>
     <p style={{marginTop:"20px",fontSize:'20px',color:'darkred',fontFamily: 'SBAggroB'}}>배송안내</p>
     <Table  bordered style={{border:"1px solid darkred",color:"darkred"}}>
-      <tbody >
+      <tbody>
         <tr>
           <th style={{width:"15%"}}>배송업체</th>
           <td>CJ대한통운</td>
@@ -108,7 +139,7 @@ function TabContent(props){
     </Table>
     <p style={{marginTop:"20px",fontSize:'20px',color:'darkred',fontFamily: 'SBAggroB'}}>반품/교환안내</p>
     <Table  bordered style={{marginTop:"20px",border:"1px solid darkred",color:"darkred"}}>
-      <tbody >
+      <tbody>
         <tr>
           <th style={{width:"15%"}}>교환/환불절차</th>
           <td>
@@ -169,12 +200,57 @@ function TabContent(props){
         </tr>
       </tbody>
     </Table>
-  </div>, 
+  </>, 
   <div>
-    내용2
+    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"3px solid darkred"}}><p style={{marginTop:"20px",fontSize:'20px',color:'darkred',fontFamily: 'SBAggroB'}}>후기</p><button style={{background:"darkred",color:"white",fontSize:"16px",border:"none",height:"40px",borderRadius:"25px",padding:"0px 20px"}} onClick={()=>{alert("로그인 후 이용이 가능합니다.");}}>후기작성</button></div>
+
+    <div style={{borderBottom:"1px solid darkred",height:"auto",display:"flex",flexWrap:"wrap",alignContent:"center",color:"darkred"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",width:"100%",marginTop:'10px'}}><p>★★★★★ kimd***</p><p>2023.03.12</p></div>
+      <Accordion defaultActiveKey="0" flush style={{width:"100%"}}>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>선크림만 발라도 그냥 클렌징폼쓰면...</Accordion.Header>
+          <Accordion.Body>
+            선크림만 발라도 그냥 클렌징폼쓰면 깨끗이 세안이 안된다고 하는데 오일은 미끌거려서 싫더라고요... 이건 가볍게 지우기 좋았어요
+          </Accordion.Body>
+        </Accordion.Item>
+        </Accordion>
+    </div>
+    <div style={{borderBottom:"1px solid darkred",height:"auto",display:"flex",flexWrap:"wrap",alignContent:"center",color:"darkred"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",width:"100%",marginTop:'10px'}}><p>★★★★★ sdas***</p><p>2023.03.05</p></div>
+      <Accordion defaultActiveKey="0" flush style={{width:"100%"}}>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>클렌징워터 다 사용하기 전에...</Accordion.Header>
+          <Accordion.Body>
+            클렌징워터 다 사용하기 전에 구매해요. 가볍게 지우는게 좋아서 계속 사용중입니다. 재구매 할 것 같아요. 배송이 빨리 와서 좋았습니다.
+          </Accordion.Body>
+        </Accordion.Item>
+        </Accordion>
+    </div>
+    <div style={{borderBottom:"1px solid darkred",height:"auto",display:"flex",flexWrap:"wrap",alignContent:"center",color:"darkred"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",width:"100%",marginTop:'10px'}}><p>★★★★★ gjdr***</p><p>2023.02.27</p></div>
+      <Accordion defaultActiveKey="0" flush style={{width:"100%"}}>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>평소에 클렌징 라인으로 유명하다고...</Accordion.Header>
+          <Accordion.Body>
+            평소에 클렌징 라인으로 유명하다고 알고있었는데 네고왕 덕분에 관심있던 제품들을 구매했습니다. 하나하나 써보고 있었는데 샘플 챙겨주셔서 샘플 주신것들 중에 좋은것들 써보고있습니다!
+          </Accordion.Body>
+        </Accordion.Item>
+        </Accordion>
+    </div>
+    <div style={{borderBottom:"1px solid darkred",height:"auto",display:"flex",flexWrap:"wrap",alignContent:"center",color:"darkred"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",width:"100%",marginTop:'10px'}}><p>★★★★☆ sdgh***</p><p>2023.01.09</p></div>
+      <Accordion defaultActiveKey="0" flush style={{width:"100%"}}>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>마녀공장 제품이랑 대체적으로...</Accordion.Header>
+          <Accordion.Body>
+            마녀공장 제품이랑 대체적으로 다 맞는 편이어서 클렌징 워터로 사용하려고 구매했습니다. 아직은 더 사용해봐야 할 것 같습니다. 샘플이 많이 와서 기분이 좋아요.
+          </Accordion.Body>
+        </Accordion.Item>
+        </Accordion>
+    </div>
   </div>,
   <div>
-    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"3px solid darkred"}}><p style={{marginTop:"20px",fontSize:'20px',color:'darkred',fontFamily: 'SBAggroB'}}>제품문의</p><button style={{background:"darkred",color:"white",fontSize:"16px",border:"none",height:"40px",borderRadius:"5px",padding:"0px 10px"}} onClick={()=>{alert("로그인 후 이용이 가능합니다.");}}>문의하기</button></div>
+    <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"3px solid darkred"}}><p style={{marginTop:"20px",fontSize:'20px',color:'darkred',fontFamily: 'SBAggroB'}}>제품문의</p><button style={{background:"darkred",color:"white",fontSize:"16px",border:"none",height:"40px",borderRadius:"25px",padding:"0px 20px"}} onClick={()=>{alert("로그인 후 이용이 가능합니다.");}}>문의하기</button></div>
 
     <div style={{borderBottom:"1px solid darkred",height:"80px",display:"flex",flexWrap:"wrap",alignContent:"center",color:"darkred"}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",width:"100%",marginTop:'10px'}}><p>비밀글입니다</p><p onClick={()=>{alert("로그인 후 이용이 가능합니다.");}}>내용보기</p></div>
@@ -190,7 +266,6 @@ function TabContent(props){
     </div>
   </div>]
   [props.tab]
-  
   }
 
 
