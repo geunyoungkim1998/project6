@@ -1,27 +1,15 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-let user=createSlice({
-    name:"user",
-    initialState:{name:'kim',age:20},
-    reducers:{
-        changeName(state){
-            state.name='john kim'
-        },
-        increase(state,action){
-            state.age+=action.payload
-        }
-    }
-})
 
 let cart=createSlice({
     name:"cart",
     initialState:[
-        {id:0, name:"퓨어 클렌징 오일 200ml" ,count:2, price:17400,imgUrl:"img/product1.jpg"},
-        {id:1, name:"비피다 바이옴 콤플렉스 앰플 50ml" ,count:1, price:24500,imgUrl:"img/product2.jpg"},
-        {id:2, name:"비피다 바이옴 컨센트레이트 세럼 35ml" ,count:3, price:24400,imgUrl:"img/product5.jpg"},
-        {id:3, name:"갈락 나이아신 2.0 에센스 50ml" ,count:1, price:23200,imgUrl:"img/product4.jpg"},
-        {id:4, name:"블랙헤드 퓨어 클렌징 오일 킬패드 50매" ,count:1, price:18000,imgUrl:"img/product7.jpg"},
-        {id:5, name:"판테토인 크림 80ml" ,count:1, price:30000,imgUrl:"img/product3.jpg"},
+        {id:0, name:"아워 비건 어성초 시카 크림 (100ml+10ml*2)" ,count:1, price:22400,imgUrl:"img/store1.jpg"},
+        {id:1, name:"로즈힙 리페어 크림 50ml" ,count:1, price:24000,imgUrl:"img/store2.jpg"},
+        {id:2, name:"아워 비건 선크림 베이직 50ml" ,count:2, price:18200,imgUrl:"img/store3.jpg"},
+        {id:3, name:"갈락 나이아신 에센스 마스크 1매" ,count:3, price:3000,imgUrl:"img/store4.jpg"},
+        {id:4, name:"알로에 수딩 로션 150ml" ,count:1, price:17000,imgUrl:"img/store5.jpg"},
+        {id:5, name:"퓨어 엔자임 클렌징 워터 400ml" ,count:1, price:13200,imgUrl:"img/store6.jpg"},
     ],
     reducers:{
         addCount(state,action){
@@ -172,13 +160,12 @@ let data=createSlice({
     }
 })
 
-export let {changeName,increase}=user.actions
+
 export let {addCount,minusCount,addItem,sortName}=cart.actions
 export let {sortName2,sortLPrice,sortHPrice}=data.actions
 
 export default configureStore({
     reducer:{
-        user:user.reducer,
         cart:cart.reducer,
         data:data.reducer
     }

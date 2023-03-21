@@ -1,6 +1,8 @@
 import { useState,useEffect } from 'react';
 import { Container,Row,Col,Button,Nav,Table,Accordion} from 'react-bootstrap';
 import { useParams,useNavigate } from 'react-router-dom';
+import { addItem } from '../store';
+import { useDispatch } from 'react-redux';
 
 function Detail(props){
   let {id}=useParams();
@@ -9,6 +11,8 @@ function Detail(props){
   let [tab,setTab]=useState(0);
 
   let[scale,setScale]=useState('');
+
+  let dispatch=useDispatch();
 
   const [num1,setNum1]=useState(1);
   const decrease=()=>{
@@ -65,7 +69,7 @@ function Detail(props){
             <Button variant="outline-danger" className="priceBtn2" disabled="disabled">{num1*selproduct.price+" 원"}</Button>{' '}
           </div>
           <div style={{display:"flex"}} id="shopbtn1">
-            <Button variant="outline-danger" onClick={()=>{navigate('/cart')}} >▷ 장바구니 추가</Button>{' '}
+            <Button variant="outline-danger" onClick={()=>{dispatch(addItem({id:selproduct.id,name:selproduct.title,count:1*num1,imgUrl:selproduct.imgUrl,price:selproduct.price}))}}>▷ 장바구니 추가</Button>{' '}
             <Button variant="outline-danger">♡ 위시리스트 추가</Button>{' '}
             <Button variant="outline-danger">+ 바로구매</Button>{' '}
           </div>

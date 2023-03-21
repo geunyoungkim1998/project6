@@ -30,7 +30,7 @@ const Cart = () => {
                 <tbody>
                     {
                         state.cart.map((v,i)=>
-                        <tr key={i}  id='blacnk4'>
+                        <tr key={i}  className='blanck4'>
                             <td><input type="checkbox" style={{verticalAlign:"middle"}} name='cart' checked='checked' value='' readOnly></input></td>
 
                             <td><img src={state.cart[i].imgUrl} style={{width:"80px"}}></img></td>

@@ -280,6 +280,7 @@ function Home(props){
         </Slider>
       </div>
     </Container>
+
     </>
   )
 }
@@ -296,9 +297,7 @@ function Product(props){
           navigate("/detail/"+props.cosmetic.id)
         }}></img>
             <div style={{display:"flex"}} id="shopbtn1">
-            <Button variant="outline-danger" onClick={()=>{
-          navigate("/cart")
-        }}>▷ 장바구니 추가</Button>{' '}
+            <Button variant="outline-danger" onClick={()=>{navigate("/cart")}}>▷ 장바구니 추가</Button>{' '}
             <Button variant="outline-danger">♡ 위시리스트 추가</Button>{' '}
             <Button variant="outline-danger" onClick={()=>{
           navigate("/detail/"+props.cosmetic.id)
