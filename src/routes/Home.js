@@ -7,13 +7,18 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Home(props){
+import cosmetic from './../component/cosmetic1';
+import axios from 'axios';
 
+function Home(props){
   let navigate=useNavigate();
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+
+  let [cosmetic1,setCosmetic1]=useState(cosmetic);
+  let [count,setCount]=useState();
   
   const settings = {
     arrow:true,
@@ -281,7 +286,52 @@ function Home(props){
       </div>
     </Container>
 
+    {/* <Title2/> */}
+    <div className="titlefont">민감성 피부를 위한 선택</div>
+    <div style={{textAlign:"center"}}>
+        <Container style={{marginTop:'30px'}}>
+            <Row>
+                {
+                    cosmetic1.map((ele,i)=>{
+                        return(
+                            <Cosmetic cosmetic1={cosmetic1[i]}/>
+                        )
+                    })
+                }
+            </Row>
+        </Container>
+        <Button variant="outline-danger"  style={{marginBottom:"100px",width:"300px"}} className="sortBtn"
+        onClick={()=>{
+            if(count===1){
+                axios.get("./../component/cosmetic2.js").then((result)=>{
+                    let copy=[...cosmetic1,...result.data];
+                    setCosmetic1(copy);
+                    setCount(2);
+                })
+            }else if(count===2){
+                axios.get("./../component/cosmetic3.js").then((result)=>{
+                    let copy=[...cosmetic1,...result.data];
+                    setCosmetic1(copy);
+                    setCount(3);
+                })
+            }else{
+                alert("더이상 상품이 없습니다.")
+            }
+        }}
+        >+ 상품 3개 더 보기</Button>{' '}
+    </div>
+        
     </>
+  )
+}
+
+function Cosmetic(props){
+  return(
+      <Col md={4} style={{textAlign:"center"}}>
+          <img alt='item2' src={props.cosmetic1.imgUrl} width="100%"></img>
+          <h5>{props.cosmetic1.title}</h5>
+          <p>{props.cosmetic1.price} 원</p>
+      </Col>
   )
 }
 

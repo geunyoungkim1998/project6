@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import { Container,Row,Col,Button,Nav,Table,Accordion} from 'react-bootstrap';
-import { useParams,useNavigate } from 'react-router-dom';
+import { useParams,useNavigate} from 'react-router-dom';
 import { addItem } from '../store';
 import { useDispatch } from 'react-redux';
 
@@ -11,6 +11,12 @@ function Detail(props){
   let [tab,setTab]=useState(0);
 
   let[scale,setScale]=useState('');
+  useEffect(()=>{
+    setTimeout(()=>{setScale('end')},50)
+    return()=>{
+      setScale('');
+    }
+  },[tab])
 
   let dispatch=useDispatch();
 
@@ -32,7 +38,7 @@ function Detail(props){
 
   return(
     <>
-    <div className={'start'+scale}>
+    <div className={'start '+scale}>
       <div style={{background:"darkred",textAlign:'center',color:"white",width:"100%",height:"30px",fontSize:"20px",marginBottom:"60px"}}>
         제품상세
       </div>

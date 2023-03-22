@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCount, sortName, minusCount } from './../store';
+import $ from 'jquery';
 
 const Cart = () => {
     let a=useSelector((state)=>{return state})
@@ -64,7 +65,17 @@ const Cart = () => {
 };
 
 function Amount(){
-    let state=useSelector((state)=>state)
+    let state=useSelector((state)=>state);
+    
+    // var countClass=$('.blanck4').length;
+    // var sum=0;
+    // var total=0;
+    // for(var i=0; i<countClass; i++){
+    //     sum+=state.cart[i].count*state.cart[i].price;
+    //     total=sum;
+    //     return total;
+    // }
+
     return(
         <>
         {state.cart[0].count*state.cart[0].price+state.cart[1].count*state.cart[1].price+state.cart[2].count*state.cart[2].price+state.cart[3].count*state.cart[3].price+state.cart[4].count*state.cart[4].price+state.cart[5].count*state.cart[5].price}
@@ -74,6 +85,18 @@ function Amount(){
 
 function Amount2(){
     let state=useSelector((state)=>state)
+
+    // var sum1=0;
+    // var total1=0;
+    // for(var i=0;i<1;i++){
+    //     for(var i=0; i<$('.blanck4').length; i++){
+    //         sum1+=state.cart[i].count*state.cart[i].price;
+    //         total1=sum1;
+    //     }
+    //     total1+=3500;
+    // }
+    // return Amount2=total1;
+
     return(
         <>
         {state.cart[0].count*state.cart[0].price+state.cart[1].count*state.cart[1].price+state.cart[2].count*state.cart[2].price+state.cart[3].count*state.cart[3].price+state.cart[4].count*state.cart[4].price+state.cart[5].count*state.cart[5].price+3500}

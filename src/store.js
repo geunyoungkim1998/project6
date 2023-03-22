@@ -4,12 +4,12 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 let cart=createSlice({
     name:"cart",
     initialState:[
-        {id:0, name:"아워 비건 어성초 시카 크림 (100ml+10ml*2)" ,count:1, price:22400,imgUrl:"img/store1.jpg"},
-        {id:1, name:"로즈힙 리페어 크림 50ml" ,count:1, price:24000,imgUrl:"img/store2.jpg"},
-        {id:2, name:"아워 비건 선크림 베이직 50ml" ,count:2, price:18200,imgUrl:"img/store3.jpg"},
-        {id:3, name:"갈락 나이아신 에센스 마스크 1매" ,count:3, price:3000,imgUrl:"img/store4.jpg"},
-        {id:4, name:"알로에 수딩 로션 150ml" ,count:1, price:17000,imgUrl:"img/store5.jpg"},
-        {id:5, name:"퓨어 엔자임 클렌징 워터 400ml" ,count:1, price:13200,imgUrl:"img/store6.jpg"},
+        {id:22, name:"아워 비건 어성초 시카 크림 (100ml+10ml*2)" ,count:1, price:22400,imgUrl:"img/store1.jpg"},
+        {id:23, name:"로즈힙 리페어 크림 50ml" ,count:1, price:24000,imgUrl:"img/store2.jpg"},
+        {id:24, name:"아워 비건 선크림 베이직 50ml" ,count:2, price:18200,imgUrl:"img/store3.jpg"},
+        {id:25, name:"갈락 나이아신 에센스 마스크 1매" ,count:3, price:3000,imgUrl:"img/store4.jpg"},
+        {id:26, name:"알로에 수딩 로션 150ml" ,count:1, price:17000,imgUrl:"img/store5.jpg"},
+        {id:27, name:"퓨어 엔자임 클렌징 워터 400ml" ,count:1, price:13200,imgUrl:"img/store6.jpg"},
     ],
     reducers:{
         addCount(state,action){
